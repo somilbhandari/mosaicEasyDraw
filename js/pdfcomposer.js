@@ -50,10 +50,10 @@ function generatePdf() {
             doc.addPage();
             // drawing block #(blockI, blockJ)
             doc.setTextColor(0);
-            drawMiniature(doc, blockI, blockJ, blockWidthCubes, blockHeightCubes, areaMiniautre, true);
-            drawMiniRect(doc,  blockI, blockJ, blockWidthCubes, blockHeightCubes, areaMiniautre);
-            drawTextInRect(doc, blockNameL(blockI, blockJ, numBlocksHeight).name, false, nmRect.x, nmRect.y,
-                    nmRect.width, nmRect.height);
+//            drawMiniature(doc, blockI, blockJ, blockWidthCubes, blockHeightCubes, areaMiniautre, true);
+//            drawMiniRect(doc,  blockI, blockJ, blockWidthCubes, blockHeightCubes, areaMiniautre);
+  //          drawTextInRect(doc, blockNameL(blockI, blockJ, numBlocksHeight).name, false, nmRect.x, nmRect.y,
+   //                 nmRect.width, nmRect.height);
             drawCubesBlock(doc, blockI, blockJ, blockWidthCubes, blockHeightCubes, areaBlock);
 
             Glob.pdfProgress += 1/(numBlocksWidth * numBlocksHeight);
@@ -79,8 +79,8 @@ function drawCubesBlock(doc, blockI, blockJ, blockWidthCubes, blockHeightCubes, 
             let cubePosX = drawAreaRect.x + cubeJ * cubeSize;
             let cubePosY = drawAreaRect.y + cubeI * cubeSize;
 
-            doc.setLineWidth(1);
-            doc.setDrawColor(100, 100, 100);
+            doc.setLineWidth(0.1);
+            doc.setDrawColor(100);
 
             // coordinates of top-left pixel of a cube
 
@@ -109,8 +109,9 @@ function drawCubesBlock(doc, blockI, blockJ, blockWidthCubes, blockHeightCubes, 
                             let bgIsDark = (rgb[0] + rgb[1] + rgb[2] < 128);
                             let letterRgb;
                             if (Glob.pdfBwPrinter) {
-                                let brightness = bgIsDark ? 255 : 0; // dark on bright BG and vice-versa
-                                letterRgb = [brightness, brightness, brightness];
+                             //   let brightness = bgIsDark ? 255 : 0; // dark on bright BG and vice-versa
+                             //   letterRgb = [brightness, brightness, brightness];
+							      letterRgb = [rgb[0], rgb[1], rgb[2]];
                             } else {
                                 // smooth color
                                 const addValue = 30;
@@ -134,8 +135,8 @@ function drawCubesBlock(doc, blockI, blockJ, blockWidthCubes, blockHeightCubes, 
 
             if (Glob.cubeDimen > 1 && cubeX < Glob.imageData.width && cubeY < Glob.imageData.height) {
                 // outline this cube
-                doc.setDrawColor(0);
-                doc.setLineWidth(2);
+                doc.setDrawColor(50);
+                doc.setLineWidth(0.1);
                 doc.rect(cubePosX, cubePosY, cubeSize, cubeSize, 'D'); //Fill and Border = FD
             }
         }
@@ -205,7 +206,8 @@ function blockDrawArea(doc) {
     const pageHeight = doc.internal.pageSize.getHeight();
     const pageMargin = pageWidth * 0.07; // space from page bottoms
     const heightNoMargin = pageHeight - 2*pageMargin;
-    const splitCoeff = 0.3; // block starts at 0.3 * page width;
+//    const splitCoeff = 0.3; // block starts at 0.3 * page width;
+    const splitCoeff = 0.0; // block starts at 0.3 * page width;
     return {
         x: pageMargin,
         y: pageMargin + splitCoeff * heightNoMargin,

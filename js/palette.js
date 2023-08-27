@@ -10,23 +10,23 @@
 // palette should be sorted dark-to-bright for grad method
 Glob.defaultPalette = [
     {
-        available: false,
+        available: true,
         rgb: [  0,   0,   0], // Black
         name: 'Black',
-        notation: 'D',
+        notation: 'B',
         grad: true,
         tryDitherWo: false
     },
     {
-        available: true,
+        available: false,
         rgb: [  0,   0, 255], // Blue
-        name: 'Blue',
-        notation: 'B',
+        name: 'Indigo',
+        notation: 'I',
         grad: true,
         tryDitherWo: true
     },
     {
-        available: true,
+        available: false,
         rgb: [  0, 255,   0], // Green
         name: 'Green',
         notation: 'G',
@@ -71,7 +71,7 @@ Glob.defaultPalette = [
         available: true,
         rgb: [255, 255, 255], // White
         name: 'White',
-        notation: 'W',
+        notation: ' ',
         grad: true,
         tryDitherWo: false
     }
